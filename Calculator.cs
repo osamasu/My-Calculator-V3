@@ -3,166 +3,159 @@ using My_Calculator_V2;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Design
 {
 
-    public partial class Calculator : Form
+    public partial class CalculatorFrm : Form
     {
 
-        public Calculator()
+        public CalculatorFrm()
         {
             InitializeComponent();
             LB_Equation.Text = string.Empty;
-
         }
 
-        public enum enOperators
-        { Plus = '+', Minus = '-', Multiply = '*', Divide = '/' };
 
-        public class clsCalculator
+        private Stack<float> NumbersStack = new Stack<float>();
+        private Stack<char> OperatorsStack = new Stack<char>();
+
+        // Create Instance and Subscribe On Event To Each Instance
+        private Dictionary<char, clsCalculator> DOperations = new Dictionary<char, clsCalculator>
         {
-            public Double FinalResult = new Double();
-            public Double Value = new Double();
+            { '+', new clsCalculator(Add) },
+            { '-',new clsCalculator(Subtract)} ,
+            {'*',new clsCalculator(Multiply) },
+            {'/',new clsCalculator(Divide) }
+        };
 
-            public Stack<double> ResultHistory = new Stack<double>();
 
-            public Queue<enOperators> OperationsQueue = new Queue<enOperators>();
 
-            public Queue<double> NumbersQueue = new Queue<double>();
-
-            public Byte LastIndexOperator = 0;
-
+        #region Native Methods
+        // Native Methods ----------------------------------
+        private static float Add(float Num1, float Num2)
+        {
+            return Num1 + Num2;
+        }
+        private static float Subtract(float Num1, float Num2)
+        {
+            return Num1 - Num2;
+        }
+        private static float Multiply(float Num1, float Num2)
+        {
+            return Num1 * Num2;
+        }
+        private static float Divide(float Num1, float Num2)
+        {
+            return Num1 / Num2;
+        }
+        private bool IsOperator(char input)
+        {
+            return input == '+' || input == '-' || input == '*' || input == '/';
         }
 
-        private clsCalculator MyCalculator = new clsCalculator();
+        // ---------------------------------------------------
+        #endregion
 
-        private void _Algorithums(ref Double Num, enOperators Operation)
+
+        #region Handling GUI Winform Calc
+        private bool _isPreviousOperationExist()
         {
-            switch (Operation)
+            char LastOpMark = TB_Result.Text[TB_Result.Text.Length - 1];
+            return IsOperator(LastOpMark);
+        }
+
+        private void PerformCalculation()
+        {
+            if (NumbersStack.Count >= 2 && OperatorsStack.Count >= 1)
             {
-                case enOperators.Plus:
-                    MyCalculator.Value += Num;
-                    break;
+                float Number = NumbersStack.Pop();
+                float EffectedNumber = NumbersStack.Pop();
+                char Operator = OperatorsStack.Pop();
 
-                case enOperators.Minus:
-                    MyCalculator.Value -= Num;
-                    break;
+                if (DOperations.TryGetValue(Operator, out clsCalculator Calculator))
+                {
+                    float Result = Calculator.PerformOperation(EffectedNumber, Number);
+                    NumbersStack.Push(Result);
+                    clsCalculator.FinalResult = Result;
+                }
+                else
+                    throw new ArgumentException("Invalid Operator");
 
-                case enOperators.Multiply:
-                    MyCalculator.Value *= Num;
-                    break;
 
-                case enOperators.Divide:
-                    MyCalculator.Value /= Num;
-                    break;
-
+                UpdateDisplay();
             }
         }
 
-        private Double _Calculate()
+        private void _UpdateEquation()
         {
-            Double[] ArrNumber = MyCalculator.NumbersQueue.ToArray();
-
-            _Algorithums(ref ArrNumber[0], enOperators.Plus);
-
-            for (Byte i = 0; i < MyCalculator.NumbersQueue.Count - 1; i++)
+            if (NumbersStack.Count > 1 && OperatorsStack.Count >= 1)
             {
-                _Algorithums(ref ArrNumber[i + 1], MyCalculator.OperationsQueue.Peek());
-
-                MyCalculator.OperationsQueue.Dequeue();
-            }
-
-            return MyCalculator.Value;
-        }
-
-        private enOperators Operator(char Operator)
-        {
-            switch (Operator)
-            {
-                case '+':
-                    return enOperators.Plus;
-
-                case '-':
-                    return enOperators.Minus;
-
-                case '*':
-                    return enOperators.Multiply;
-
-                case '/':
-                    return enOperators.Divide;
-
-                default:
-                    return 0;
+                LB_Equation.Text = TB_Result.Text;
             }
         }
 
-
-        private void NumberClicked(Boolean isSecondPart = false)
+        private void Operators_ClickShared(object sender, EventArgs e)
         {
-            double Number = 1;
-            if (isSecondPart == false)
-            {
-                double.TryParse(TB_Result.Text.Substring(0, TB_Result.Text.Length - 1), NumberStyles.Number, null, out Number);
-                MyCalculator.LastIndexOperator = (Byte)TB_Result.Text.LastIndexOf(TB_Result.Text[TB_Result.Text.Length - 1]);
 
-            }
-            else
-            {
-                String Equation = TB_Result.Text.Substring(MyCalculator.LastIndexOperator + 1);
-
-
-                double.TryParse(Equation, NumberStyles.Number, null, out Number);
-            }
-
-            MyCalculator.NumbersQueue.Enqueue(Number);
-        }
-
-
-
-        private void Operators_Click(object sender, EventArgs e)
-        {
-            if (TB_Result.Text == String.Empty)
+            if (TB_Result.Text == string.Empty)
                 return;
-
-
-            if (_isPreviousOperationExist())
-            {
-                MyCalculator.OperationsQueue.Dequeue();
-                MyCalculator.NumbersQueue.Dequeue();
-                TB_Result.Text = TB_Result.Text.Substring(0, TB_Result.Text.Length - 1);
-            }
-
-            if (MyCalculator.OperationsQueue.Count == 1)
-            {
-                Btn_Equals.PerformClick();
-            }
 
             IconButton OperatorClicked = (IconButton)sender;
 
+            // Check if exist pop - make ability to change operation in calc without click delete
+            if (_isPreviousOperationExist())
+            {
+                OperatorsStack.Pop();
+                OperatorsStack.Push(char.Parse(OperatorClicked.Tag.ToString()));
+            }
 
-            TB_Result.Text += OperatorClicked.Tag;
+            // perform it if its ex: 5 + 9 ( 2 number > 1 operation )
+            if (NumbersStack.Count > OperatorsStack.Count)
+            {
+                _UpdateEquation();
+                PerformCalculation();
+                OperatorsStack.Push(Convert.ToChar(OperatorClicked.Tag));
+            }
 
-            MyCalculator.OperationsQueue.Enqueue(Operator((char)TB_Result.Text[TB_Result.Text.Length - 1]));
+            UpdateDisplay();
 
-            NumberClicked();
+
         }
 
         private void Btn_Equals_Click(object sender, EventArgs e)
         {
+            _UpdateEquation();
+            PerformCalculation();
+            isDotPressed = false;
+        }
 
-            //LB_Equation.Text = TB_Result.Text + " =";
-            NumberClicked(true);
+        private void UpdateDisplay()
+        {
 
-            MyCalculator.FinalResult = _Calculate();
-            TB_Result.Text = MyCalculator.FinalResult.ToString();
+            List<string> DisplayList = new List<string>();
 
-            MyCalculator.Value = 0;
-            MyCalculator.NumbersQueue.Clear();
-            MyCalculator.OperationsQueue.Clear();
-            MyCalculator.LastIndexOperator = 0;
+
+            float[] NumbersArray = NumbersStack.Reverse().ToArray();
+            char[] OperatorsArray = OperatorsStack.Reverse().ToArray();
+
+
+            for (int Index = 0; Index < NumbersArray.Length; Index++)
+            {
+                DisplayList.Add(NumbersArray[Index].ToString());
+
+                if (Index < OperatorsArray.Length)
+                {
+                    DisplayList.Add(OperatorsArray[Index].ToString());
+                }
+            }
+
+
+            string DisplayResult = string.Join(" ", DisplayList);
+
+            TB_Result.Text = DisplayResult;
 
         }
 
@@ -172,89 +165,64 @@ namespace Design
                 TB_Result.Clear();
 
             IconButton PressedNumber = (IconButton)sender;
-            TB_Result.Text += PressedNumber.Tag;
+
+
+
+            if (NumbersStack.Count == OperatorsStack.Count || isDotPressed)
+            {
+                if (float.TryParse(PressedNumber.Tag.ToString(), out float EnteredNumber))
+                {
+                    if (isDotPressed)
+                    {
+                        NumbersStack.Push((NumbersStack.Pop() + float.Parse($".{EnteredNumber}")));
+                        isDotPressed = false;
+                    }
+                    else
+                        NumbersStack.Push(EnteredNumber);
+                }
+            }
+            else
+            {
+                float CurrentNumber = NumbersStack.Pop();
+                byte EnteredNumber = Convert.ToByte(PressedNumber.Tag.ToString());
+
+                if (CurrentNumber.ToString().Contains('.'))
+                    CurrentNumber = float.Parse($"{CurrentNumber}{EnteredNumber}");
+
+                else
+                    CurrentNumber = CurrentNumber * 10 + EnteredNumber;
+
+
+                NumbersStack.Push(CurrentNumber);
+            }
+
+
+            UpdateDisplay();
         }
 
-        private bool _isPreviousOperationExist()
-        {
-            return (TB_Result.Text[TB_Result.Text.Length - 1] == '+') ? true : (TB_Result.Text[TB_Result.Text.Length - 1] == '-') ? true : (TB_Result.Text[TB_Result.Text.Length - 1] == '/') ? true : (TB_Result.Text[TB_Result.Text.Length - 1] == '*');
-        }
 
         private void Keys_Pressed(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Enter:
-                    Btn_Equals_Click(sender, EventArgs.Empty);
-                    break;
-
-                case Keys.C:
-                    Btn_Clear.PerformClick();
-                    break;
-
-                case Keys.Decimal:
-                    Dot.PerformClick();
-                    break;
-
-                case Keys.NumPad0:
-                    Number_Zero.PerformClick();
-                    break;
-
-                case Keys.NumPad1:
-                    Btn_One.PerformClick();
-                    break;
-
-                case Keys.NumPad2:
-                    Btn_Two.PerformClick();
-                    break;
-
-                case Keys.NumPad3:
-                    Btn_Three.PerformClick();
-                    break;
-
-                case Keys.NumPad4:
-                    Btn_Four.PerformClick();
-                    break;
-
-                case Keys.NumPad5:
-                    Btn_Five.PerformClick();
-                    break;
-
-                case Keys.NumPad6:
-                    Btn_Six.PerformClick();
-                    break;
-
-                case Keys.NumPad7:
-                    Btn_Seven.PerformClick();
-                    break;
-
-                case Keys.NumPad8:
-                    Btn_Eight.PerformClick();
-                    break;
-
-                case Keys.NumPad9:
-                    Btn_Nine.PerformClick();
-                    break;
-
-                case Keys.Back:
-                    Btn_Delete.PerformClick();
-                    break;
-
-                case Keys.Add:
-                    Btn_Plus.PerformClick();
-                    break;
-
-                case Keys.Subtract:
-                    Btn_Mainus.PerformClick();
-                    break;
-
-                case Keys.Multiply:
-                    Btn_Multiply.PerformClick();
-                    break;
-
-                case Keys.Divide:
-                    Btn_Divide.PerformClick();
-                    break;
+                case Keys.Enter: Btn_Equals_Click(sender, EventArgs.Empty); break;
+                case Keys.C: Btn_Clear.PerformClick(); break;
+                case Keys.Decimal: Dot.PerformClick(); break;
+                case Keys.NumPad0: Number_Zero.PerformClick(); break;
+                case Keys.NumPad1: Btn_One.PerformClick(); break;
+                case Keys.NumPad2: Btn_Two.PerformClick(); break;
+                case Keys.NumPad3: Btn_Three.PerformClick(); break;
+                case Keys.NumPad4: Btn_Four.PerformClick(); break;
+                case Keys.NumPad5: Btn_Five.PerformClick(); break;
+                case Keys.NumPad6: Btn_Six.PerformClick(); break;
+                case Keys.NumPad7: Btn_Seven.PerformClick(); break;
+                case Keys.NumPad8: Btn_Eight.PerformClick(); break;
+                case Keys.NumPad9: Btn_Nine.PerformClick(); break;
+                case Keys.Back: Btn_Delete.PerformClick(); break;
+                case Keys.Add: Btn_Plus.PerformClick(); break;
+                case Keys.Subtract: Btn_Mainus.PerformClick(); break;
+                case Keys.Multiply: Btn_Multiply.PerformClick(); break;
+                case Keys.Divide: Btn_Divide.PerformClick(); break;
             }
 
             e.Handled = true;
@@ -262,57 +230,65 @@ namespace Design
 
         private void Btn_Clear_Click(object sender, EventArgs e)
         {
-            TB_Result.Clear();
-            MyCalculator = new clsCalculator();
+            NumbersStack.Clear();
+            OperatorsStack.Clear();
+            clsCalculator.FinalResult = 0.0f;
+            UpdateDisplay();
         }
 
+        bool isDotPressed = false;
         private void Dot_Click(object sender, EventArgs e)
         {
-            TB_Result.Text += '.';
+
+            if (!isDotPressed)
+            {
+                if (_isPreviousOperationExist())
+                {
+                    TB_Result.Text += "0.";
+                    NumbersStack.Push(0);
+                }
+                else
+                    TB_Result.Text += '.';
+
+
+
+                isDotPressed = true;
+            }
         }
 
         private void Btn_Delete_Click(object sender, EventArgs e)
         {
-            if (TB_Result.Text == String.Empty)
+            if (TB_Result.Text == string.Empty)
                 return;
-
 
             if (_isPreviousOperationExist())
             {
-                MyCalculator.OperationsQueue.Dequeue();
-                MyCalculator.NumbersQueue.Dequeue();
+                OperatorsStack.Pop();
             }
-            TB_Result.Text = TB_Result.Text.Substring(0, TB_Result.Text.Length - 1);
+
+            else
+            {
+                float Number = NumbersStack.Pop();
+                string NumberInString = Number.ToString();
+                if (NumberInString.Length > 1)
+                {
+                    NumberInString = NumberInString.Substring(0, NumberInString.Length - 1);
+                    NumbersStack.Push(float.Parse(NumberInString));
+                }
+
+            }
+
+            UpdateDisplay();
         }
 
-        private void dToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form DeveloperInfo = new AboutForm();
-            DeveloperInfo.ShowDialog();
-        }
+        private void Btn_Divide_Click(object sender, EventArgs e) => Operators_ClickShared(sender, e);
+        private void Btn_Multiply_Click(object sender, EventArgs e) => Operators_ClickShared(sender, e);
+        private void Btn_Mainus_Click(object sender, EventArgs e) => Operators_ClickShared(sender, e);
+        private void Btn_Plus_Click(object sender, EventArgs e) => Operators_ClickShared(sender, e);
+        #endregion
 
-        private void uIControlerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UI_Customasation UIController = new UI_Customasation(this);
-            UIController._UIDataBack = ApplyUICustom_DataBack;
-            UIController.ShowDialog();
-        }
 
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-
-        }
-
-        private void Calculator_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void toolStripMenuReset_Click(object sender, EventArgs e) => Application.Restart();
 
         public void ApplyUICustom_DataBack(Color Btns_Colours, Color ResultBox_Colours, Color CalcBoxColour, Color CalcBack)
         {
@@ -332,6 +308,19 @@ namespace Design
 
             panel2.BackColor = ResultBox_Colours;
             TB_Result.BackColor = ResultBox_Colours;
+        }
+
+        private void dToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form DeveloperInfo = new AboutForm();
+            DeveloperInfo.ShowDialog();
+        }
+
+        private void uIControlerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI_Customasation UIController = new UI_Customasation(this);
+            UIController._UIDataBack = ApplyUICustom_DataBack;
+            UIController.ShowDialog();
         }
     }
 }

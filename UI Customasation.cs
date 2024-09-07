@@ -12,9 +12,9 @@ namespace My_Calculator_V2
         public UI_CustomasationEventHandler _UIDataBack;
 
 
-        Calculator MyCalculatorForm;
+        CalculatorFrm MyCalculatorForm;
 
-        public UI_Customasation(Calculator MyCalculatorForm)
+        public UI_Customasation(CalculatorFrm MyCalculatorForm)
         {
             InitializeComponent();
             this.MyCalculatorForm = MyCalculatorForm;

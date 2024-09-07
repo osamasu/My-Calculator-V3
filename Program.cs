@@ -17,7 +17,7 @@ internal static class Program
 
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new Calculator());
+        Application.Run(new CalculatorFrm());
     }
 
     [System.Runtime.InteropServices.DllImport("user32.dll")]

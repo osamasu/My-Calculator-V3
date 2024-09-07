@@ -1,6 +1,6 @@
 ﻿namespace Design
 {
-    partial class Calculator
+    partial class CalculatorFrm
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculator));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculatorFrm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uIControlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuReset = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Calc_Panel = new System.Windows.Forms.Panel();
@@ -70,7 +70,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(424, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(424, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,12 +79,11 @@
             this.optionsToolStripMenuItem.DoubleClickEnabled = true;
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uIControlerToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.toolStripMenuReset});
             this.optionsToolStripMenuItem.Image = global::My_Calculator_V2.Properties.Resources.configure;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(95, 26);
             this.optionsToolStripMenuItem.Text = "&Options";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // uIControlerToolStripMenuItem
             // 
@@ -97,16 +96,16 @@
             this.uIControlerToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uIControlerToolStripMenuItem.Click += new System.EventHandler(this.uIControlerToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // toolStripMenuReset
             // 
-            this.toolStripMenuItem1.Image = global::My_Calculator_V2.Properties.Resources.refresh;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Always;
-            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(223, 26);
-            this.toolStripMenuItem1.Text = "Reset";
-            this.toolStripMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripMenuReset.Image = global::My_Calculator_V2.Properties.Resources.refresh;
+            this.toolStripMenuReset.Name = "toolStripMenuReset";
+            this.toolStripMenuReset.Overflow = System.Windows.Forms.ToolStripItemOverflow.Always;
+            this.toolStripMenuReset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.toolStripMenuReset.Size = new System.Drawing.Size(223, 26);
+            this.toolStripMenuReset.Text = "Reset";
+            this.toolStripMenuReset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripMenuReset.Click += new System.EventHandler(this.toolStripMenuReset_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -116,7 +115,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.ShortcutKeyDisplayString = "F1";
             this.helpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // dToolStripMenuItem
@@ -371,7 +370,7 @@
             this.Btn_Divide.Tag = "/";
             this.Btn_Divide.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.Btn_Divide.UseVisualStyleBackColor = false;
-            this.Btn_Divide.Click += new System.EventHandler(this.Operators_Click);
+            this.Btn_Divide.Click += new System.EventHandler(this.Btn_Divide_Click);
             // 
             // Btn_Multiply
             // 
@@ -389,7 +388,7 @@
             this.Btn_Multiply.Tag = "*";
             this.Btn_Multiply.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.Btn_Multiply.UseVisualStyleBackColor = false;
-            this.Btn_Multiply.Click += new System.EventHandler(this.Operators_Click);
+            this.Btn_Multiply.Click += new System.EventHandler(this.Btn_Multiply_Click);
             // 
             // Btn_Mainus
             // 
@@ -407,7 +406,7 @@
             this.Btn_Mainus.Tag = "-";
             this.Btn_Mainus.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.Btn_Mainus.UseVisualStyleBackColor = false;
-            this.Btn_Mainus.Click += new System.EventHandler(this.Operators_Click);
+            this.Btn_Mainus.Click += new System.EventHandler(this.Btn_Mainus_Click);
             // 
             // Dot
             // 
@@ -442,7 +441,7 @@
             this.Btn_Plus.Tag = "+";
             this.Btn_Plus.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.Btn_Plus.UseVisualStyleBackColor = false;
-            this.Btn_Plus.Click += new System.EventHandler(this.Operators_Click);
+            this.Btn_Plus.Click += new System.EventHandler(this.Btn_Plus_Click);
             // 
             // Btn_Equals
             // 
@@ -514,7 +513,7 @@
             this.TB_Result.TabStop = false;
             this.TB_Result.Text = "0";
             // 
-            // Calculator
+            // CalculatorFrm
             // 
             this.AcceptButton = this.Btn_Equals;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -524,10 +523,11 @@
             this.ClientSize = new System.Drawing.Size(424, 538);
             this.Controls.Add(this.Calc_Panel);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Name = "Calculator";
-            this.Load += new System.EventHandler(this.Calculator_Load);
+            this.MaximizeBox = false;
+            this.Name = "CalculatorFrm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Keys_Pressed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -567,7 +567,7 @@
         public System.Windows.Forms.Label LB_Equation;
         public System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem uIControlerToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuReset;
         public System.Windows.Forms.Panel Calc_Panel;
     }
 }

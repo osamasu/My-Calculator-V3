@@ -27,3 +27,16 @@ C:\Users\lenovo\Desktop\My Calculator V2\obj\Debug\My Calculator V2.csproj.CoreC
 C:\Users\lenovo\Desktop\My Calculator V2\obj\Debug\My Calculator V2.csproj.CopyComplete
 C:\Users\lenovo\Desktop\My Calculator V2\obj\Debug\My Calculator V2.exe
 C:\Users\lenovo\Desktop\My Calculator V2\obj\Debug\My Calculator V2.pdb
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\bin\Debug\My Calculator V2.exe.config
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\bin\Debug\My Calculator V2.exe
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\bin\Debug\My Calculator V2.pdb
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My Calculator V2.csproj.AssemblyReference.cache
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My_Calculator_V2.AboutForm.resources
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\Design.Calculator.resources
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My_Calculator_V2.Properties.Resources.resources
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My_Calculator_V2.UI_Customasation.resources
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My Calculator V2.csproj.GenerateResource.cache
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My Calculator V2.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\source\repos\osamasu\My-Calculator-V3\obj\Debug\My Calcu.50C35972.Up2Date
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My Calculator V2.exe
+C:\Users\lenovo\Source\Repos\osamasu\My-Calculator-V3\obj\Debug\My Calculator V2.pdb

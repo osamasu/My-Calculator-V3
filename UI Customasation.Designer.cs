@@ -113,7 +113,7 @@
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.iconButton2.Location = new System.Drawing.Point(229, 326);
+            this.iconButton2.Location = new System.Drawing.Point(217, 326);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(138, 58);
             this.iconButton2.TabIndex = 21;
@@ -404,14 +404,14 @@
             // 
             this.iconButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(251)))), ((int)(((byte)(254)))));
             this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.Font = new System.Drawing.Font("Noto Sans Cond", 12F, System.Drawing.FontStyle.Bold);
+            this.iconButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.iconButton3.Location = new System.Drawing.Point(377, 326);
+            this.iconButton3.Location = new System.Drawing.Point(365, 326);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(138, 58);
+            this.iconButton3.Size = new System.Drawing.Size(150, 58);
             this.iconButton3.TabIndex = 27;
             this.iconButton3.TabStop = false;
             this.iconButton3.Tag = "9";
