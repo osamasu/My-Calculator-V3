@@ -71,9 +71,10 @@
             this.IBTN_Calc_Background.IconColor = System.Drawing.Color.Black;
             this.IBTN_Calc_Background.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.IBTN_Calc_Background.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.IBTN_Calc_Background.Location = new System.Drawing.Point(89, 21);
+            this.IBTN_Calc_Background.Location = new System.Drawing.Point(76, 17);
+            this.IBTN_Calc_Background.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IBTN_Calc_Background.Name = "IBTN_Calc_Background";
-            this.IBTN_Calc_Background.Size = new System.Drawing.Size(278, 61);
+            this.IBTN_Calc_Background.Size = new System.Drawing.Size(238, 50);
             this.IBTN_Calc_Background.TabIndex = 19;
             this.IBTN_Calc_Background.TabStop = false;
             this.IBTN_Calc_Background.Tag = "9";
@@ -92,9 +93,10 @@
             this.IBTN_Result.IconColor = System.Drawing.Color.Black;
             this.IBTN_Result.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.IBTN_Result.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.IBTN_Result.Location = new System.Drawing.Point(89, 99);
+            this.IBTN_Result.Location = new System.Drawing.Point(76, 80);
+            this.IBTN_Result.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IBTN_Result.Name = "IBTN_Result";
-            this.IBTN_Result.Size = new System.Drawing.Size(278, 61);
+            this.IBTN_Result.Size = new System.Drawing.Size(238, 50);
             this.IBTN_Result.TabIndex = 20;
             this.IBTN_Result.TabStop = false;
             this.IBTN_Result.Tag = "9";
@@ -113,9 +115,10 @@
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.iconButton2.Location = new System.Drawing.Point(217, 326);
+            this.iconButton2.Location = new System.Drawing.Point(186, 265);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(138, 58);
+            this.iconButton2.Size = new System.Drawing.Size(118, 47);
             this.iconButton2.TabIndex = 21;
             this.iconButton2.TabStop = false;
             this.iconButton2.Tag = "9";
@@ -134,9 +137,10 @@
             this.IBTN_Calc_Box_Colour.IconColor = System.Drawing.Color.Black;
             this.IBTN_Calc_Box_Colour.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.IBTN_Calc_Box_Colour.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.IBTN_Calc_Box_Colour.Location = new System.Drawing.Point(89, 177);
+            this.IBTN_Calc_Box_Colour.Location = new System.Drawing.Point(76, 144);
+            this.IBTN_Calc_Box_Colour.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IBTN_Calc_Box_Colour.Name = "IBTN_Calc_Box_Colour";
-            this.IBTN_Calc_Box_Colour.Size = new System.Drawing.Size(278, 61);
+            this.IBTN_Calc_Box_Colour.Size = new System.Drawing.Size(238, 50);
             this.IBTN_Calc_Box_Colour.TabIndex = 22;
             this.IBTN_Calc_Box_Colour.TabStop = false;
             this.IBTN_Calc_Box_Colour.Tag = "9";
@@ -149,25 +153,28 @@
             // Panel_CalcBackground
             // 
             this.Panel_CalcBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_CalcBackground.Location = new System.Drawing.Point(12, 21);
+            this.Panel_CalcBackground.Location = new System.Drawing.Point(10, 17);
+            this.Panel_CalcBackground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel_CalcBackground.Name = "Panel_CalcBackground";
-            this.Panel_CalcBackground.Size = new System.Drawing.Size(64, 61);
+            this.Panel_CalcBackground.Size = new System.Drawing.Size(55, 50);
             this.Panel_CalcBackground.TabIndex = 23;
             // 
             // Panel_ResultBackground
             // 
             this.Panel_ResultBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_ResultBackground.Location = new System.Drawing.Point(12, 99);
+            this.Panel_ResultBackground.Location = new System.Drawing.Point(10, 80);
+            this.Panel_ResultBackground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel_ResultBackground.Name = "Panel_ResultBackground";
-            this.Panel_ResultBackground.Size = new System.Drawing.Size(64, 61);
+            this.Panel_ResultBackground.Size = new System.Drawing.Size(55, 50);
             this.Panel_ResultBackground.TabIndex = 24;
             // 
             // Panel_CalcContainer
             // 
             this.Panel_CalcContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_CalcContainer.Location = new System.Drawing.Point(12, 177);
+            this.Panel_CalcContainer.Location = new System.Drawing.Point(10, 144);
+            this.Panel_CalcContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel_CalcContainer.Name = "Panel_CalcContainer";
-            this.Panel_CalcContainer.Size = new System.Drawing.Size(64, 61);
+            this.Panel_CalcContainer.Size = new System.Drawing.Size(55, 50);
             this.Panel_CalcContainer.TabIndex = 25;
             // 
             // iconButton1
@@ -179,9 +186,10 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.iconButton1.Location = new System.Drawing.Point(89, 254);
+            this.iconButton1.Location = new System.Drawing.Point(76, 206);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(278, 61);
+            this.iconButton1.Size = new System.Drawing.Size(238, 50);
             this.iconButton1.TabIndex = 26;
             this.iconButton1.TabStop = false;
             this.iconButton1.Tag = "9";
@@ -194,9 +202,10 @@
             // panel_ButtonsColour
             // 
             this.panel_ButtonsColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_ButtonsColour.Location = new System.Drawing.Point(12, 254);
+            this.panel_ButtonsColour.Location = new System.Drawing.Point(10, 206);
+            this.panel_ButtonsColour.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_ButtonsColour.Name = "panel_ButtonsColour";
-            this.panel_ButtonsColour.Size = new System.Drawing.Size(64, 61);
+            this.panel_ButtonsColour.Size = new System.Drawing.Size(55, 50);
             this.panel_ButtonsColour.TabIndex = 26;
             // 
             // Btn_Nine
@@ -397,7 +406,7 @@
             // 
             this.TB_Result.Location = new System.Drawing.Point(0, 0);
             this.TB_Result.Name = "TB_Result";
-            this.TB_Result.Size = new System.Drawing.Size(100, 24);
+            this.TB_Result.Size = new System.Drawing.Size(100, 20);
             this.TB_Result.TabIndex = 0;
             // 
             // iconButton3
@@ -409,9 +418,10 @@
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.iconButton3.Location = new System.Drawing.Point(365, 326);
+            this.iconButton3.Location = new System.Drawing.Point(313, 265);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(150, 58);
+            this.iconButton3.Size = new System.Drawing.Size(139, 47);
             this.iconButton3.TabIndex = 27;
             this.iconButton3.TabStop = false;
             this.iconButton3.Tag = "9";
@@ -423,10 +433,10 @@
             // 
             // UI_Customasation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(527, 399);
+            this.ClientSize = new System.Drawing.Size(457, 324);
             this.Controls.Add(this.iconButton3);
             this.Controls.Add(this.panel_ButtonsColour);
             this.Controls.Add(this.iconButton1);
@@ -437,6 +447,7 @@
             this.Controls.Add(this.iconButton2);
             this.Controls.Add(this.IBTN_Result);
             this.Controls.Add(this.IBTN_Calc_Background);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UI_Customasation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UI_Customasation";

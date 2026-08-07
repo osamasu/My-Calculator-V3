@@ -233,7 +233,10 @@ namespace Design
             NumbersStack.Clear();
             OperatorsStack.Clear();
             clsCalculator.FinalResult = 0.0f;
+
             UpdateDisplay();
+
+            LB_Equation.Text = string.Empty;
         }
 
         bool isDotPressed = false;
